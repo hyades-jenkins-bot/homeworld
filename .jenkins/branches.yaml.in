@@ -1,0 +1,10 @@
+upload-targets:
+  - name: local
+    method: rsync
+    dir: /h/binaries
+
+branches:
+  - name: hijinks.mit.edu/apt/autobuild
+    signing-key: $$_SIGNING_KEY_$$
+    upload-target: local
+    ci: true
