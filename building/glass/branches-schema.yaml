@@ -38,6 +38,8 @@ properties:
           pattern: "^[a-fA-F0-9]+$"
         upload-target:
           type: string
+        ci:
+          type: boolean
       required: ["name", "signing-key"]
       additionalProperties: false
 required: ["branches"]

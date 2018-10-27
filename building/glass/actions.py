@@ -117,6 +117,7 @@ def perform_python(context: Context, code: str, input: str = None, stage: str = 
         "aptbranch": aptbranch,
         "context": context,
         "project": context.project,
+        "ci": context.branch_config.ci,
     }
     if sourcedata is not None:
         env["input"] = sourcedata
@@ -145,6 +146,11 @@ def perform_bash(context: Context, code: str, input: str = None, stage: str = No
         "FULL_VERSION": context.project.full_version,
         "BASE_VERSION": context.project.base_version
     })
+
+    if context.branch_config.ci:
+        env.update({
+            "CI": "",
+        })
 
     with context.tempfile() as f:
         f.write(b"set -e -u\n")

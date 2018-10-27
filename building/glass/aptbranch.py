@@ -95,3 +95,9 @@ class Config:
             raise Exception("no upload target found for branch %s" % self.name)
         upload_target_name = self.config["upload-target"]
         return select_upload_config(self.upload_targets, upload_target_name)
+
+    @property
+    def ci(self) -> bool:
+        if "ci" not in self.config:
+            return False
+        return self.config["ci"]
