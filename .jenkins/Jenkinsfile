@@ -16,7 +16,6 @@ pipeline {
 				sh '''
 apt-get -qq update && apt-get -qq upgrade
 apt-get -qq install -y python
-python /extra/authenticate.py
 ./.jenkins/jenkins-build.sh
 				'''
 			}
