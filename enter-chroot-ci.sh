@@ -27,4 +27,5 @@ NEWPATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 sudo chroot "$HOMEWORLD_CHROOT" su "$USER" -c "cd /h/ && sudo nginx && PATH=$NEWPATH exec bash"
 sudo killall nginx
 sudo umount "$HOMEWORLD_CHROOT/proc"
-sudo umount "$HOMEWORLD_CHROOT/homeworld"
+# keep trying until all processes have been killed
+until sudo umount "$HOMEWORLD_CHROOT/homeworld"; do sleep 1; done
